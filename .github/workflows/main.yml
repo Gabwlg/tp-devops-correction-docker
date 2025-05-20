@@ -14,6 +14,9 @@ on:
 jobs:
   test-backend: 
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: simple-api
     steps:
       # Checkout your GitHub code using actions/checkout@v4
       - uses: actions/checkout@v4
