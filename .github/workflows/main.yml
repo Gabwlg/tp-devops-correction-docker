@@ -32,6 +32,16 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean install
 
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=<your-project-key> \
+          -Dsonar.organization=<your-organization> \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          --file ./pom.xml
+
   build-and-push-docker-image:
     needs: test-backend
     if: github.ref == 'refs/heads/main'  # Only on main branch
