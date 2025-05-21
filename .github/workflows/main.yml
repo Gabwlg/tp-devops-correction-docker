@@ -30,7 +30,7 @@ jobs:
 
       # Finally build your app with the latest command
       - name: Build and test with Maven
-        run: mvn clean install
+        run: mvn clean verify
 
       - name: SonarCloud Scan
         env:
