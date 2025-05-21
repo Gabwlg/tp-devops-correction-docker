@@ -10,4 +10,4 @@
       - name: simple-api-network-1
       - name: simple-api-network-2
     restart_policy: on-failure
-    #restart_policy_retri: 3
+    restart_retries: 3
