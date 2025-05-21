@@ -36,6 +36,9 @@ jobs:
     needs: test-backend
     if: github.ref == 'refs/heads/main'  # Only on main branch
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: simple-api
 
     steps:
       - name: SonarCloud Scan
