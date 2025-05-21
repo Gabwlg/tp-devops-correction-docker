@@ -31,12 +31,18 @@ jobs:
       # Finally build your app with the latest command
       - name: Build and test with Maven
         run: mvn clean verify
+      
+  SonarCloud-Scan:
+    needs: test-backend
+    if: github.ref == 'refs/heads/main'  # Only on main branch
+    runs-on: ubuntu-24.04
 
+    steps:
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=gabwlg_tp-devops-correction-docker -Dsonar.organization=gabwlg -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
-
+  
   build-and-push-docker-image:
     needs: test-backend
     if: github.ref == 'refs/heads/main'  # Only on main branch
@@ -60,12 +66,12 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./database
-          tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-simple-api-database:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}
   
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
           context: ./http-server
-          tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-simple-api-httpd:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
