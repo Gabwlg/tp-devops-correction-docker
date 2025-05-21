@@ -1,0 +1,10 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/network
+- name: Create Docker network 1
+  docker_network:
+    name: simple-api-network-1
+    
+- name: Create Docker network 2
+  docker_network:
+    name: simple-api-network-2

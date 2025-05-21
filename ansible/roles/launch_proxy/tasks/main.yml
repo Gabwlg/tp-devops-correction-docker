@@ -1,0 +1,12 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/launch_proxy
+- name: Launch HTTP proxy
+  docker_container:
+    name: simple-api-proxy
+    image: gabw/tp-devops-httpd:latest
+    networks:
+      - name: simple-api-network-2
+    ports:
+      - "80:80"
+    restart_policy: no

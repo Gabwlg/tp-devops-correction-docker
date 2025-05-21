@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/database
+- name: Launch database
+  docker_container:
+    name: simple-api-database
+    image: gabw/tp-devops-database:latest
+    env_file: /home/admin/.env
+    networks:
+      - name: simple-api-network-1
+    restart_policy: unless-stopped

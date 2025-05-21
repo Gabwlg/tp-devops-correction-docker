@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/launch_app
+- name: Launch backend app
+  docker_container:
+    name: simple-api
+    image: gabw/tp-devops-simple-api-backend:latest
+    env_file: /home/admin/.env
+    networks:
+      - name: simple-api-network-1
+      - name: simple-api-network-2
+    restart_policy: on-failure
+    #restart_policy_retri: 3

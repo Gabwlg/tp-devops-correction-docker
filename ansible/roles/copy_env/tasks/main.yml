@@ -1,0 +1,7 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/copy_env
+- name: Copy .env
+  copy:
+    src: /Users/gabrielwolljung/Cours/4A/DevOpps/tp-devops-correction-docker/ansible/.env
+    dest: /home/admin/.env
