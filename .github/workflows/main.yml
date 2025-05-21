@@ -41,6 +41,8 @@ jobs:
         working-directory: simple-api
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
