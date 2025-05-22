@@ -1,7 +1,3 @@
-run: |
-  chmod 600 ansible/id_rsa
-
-
 - hosts: all
   gather_facts: true
   become: true
