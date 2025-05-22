@@ -20,6 +20,11 @@ jobs:
           sudo apt update
           sudo apt install -y ansible
 
+      - name: Create SSH key file
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
       - name: Run Ansible Playbook
         run: |
           ansible-playbook -i inventories/setup.yml playbook.yml
