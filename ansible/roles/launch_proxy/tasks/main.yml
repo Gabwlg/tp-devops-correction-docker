@@ -5,6 +5,7 @@
   docker_container:
     name: simple-api-proxy
     image: gabw/tp-devops-httpd:latest
+    pull: yes
     networks:
       - name: simple-api-network-2
     ports:

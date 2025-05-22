@@ -5,6 +5,7 @@
   docker_container:
     name: simple-api-database
     image: gabw/tp-devops-database:latest
+    pull: yes
     env_file: /home/admin/.env
     networks:
       - name: simple-api-network-1
