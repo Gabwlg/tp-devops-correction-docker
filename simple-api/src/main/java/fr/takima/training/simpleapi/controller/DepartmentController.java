@@ -63,3 +63,4 @@ public class DepartmentController {
         return ResponseEntity.ok("TEST OK");
     }
 }
+
