@@ -3,5 +3,5 @@
 # tasks file for roles/copy_env
 - name: Copy .env
   copy:
-    src: /ansible/.env
+    src: .env
     dest: /home/admin/.env
