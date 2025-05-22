@@ -86,24 +86,3 @@ jobs:
           context: ./http-server
           tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
-
-  deploy:
-    needs: build-and-push-docker-image
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install Ansible
-        run: |
-          sudo apt update
-          sudo apt install -y ansible
-
-      - name: Run Ansible Playbook
-        run: |
-          ansible-playbook -i inventories/setup.yml playbook.yml
-        env:
-          ANSIBLE_HOST_KEY_CHECKING: "False"
-        working-directory: ./ansible
